@@ -1,0 +1,314 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+main,
+article,
+aside,
+figure,
+footer,
+header,
+nav,
+section,
+details,
+summary {
+    display: block;
+}
+
+//handle box-sizing on a inhereted level
+html {
+    box-sizing: border-box;
+    @media screen and (orientation:portrait) {
+        & {
+    transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        }
+    }
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+//this helps with img scaling, you might have an
+//issue if you didn't make the embed. If you do
+//comment out height: auto
+img,
+object,
+embed {
+    max-width: 100%;
+    height: auto;
+}
+
+//add smoth scrolling to your pages
+html {
+    overflow-y: scroll;
+}
+
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+
+    &::before,
+    &::after {
+        content: "";
+        content: none;
+    }
+}
+
+// blockquote::before,
+// blockquote::after,
+// q::before,
+// q::after {
+// }
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title],
+dfn[title] {
+    border-bottom: 1px dotted #222;
+    cursor: help;
+}
+
+//table settings
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    font-weight: bold;
+    vertical-align: bottom; //center is also common
+}
+
+td {
+    font-weight: normal;
+    vertical-align: top;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+input,
+select {
+    vertical-align: middle;
+}
+
+pre {
+    white-space: pre; //CSS2
+    white-space: pre-wrap; //CSS2.1
+    white-space: pre-line; //CSS3
+    word-wrap: break-word; // IE
+}
+
+input[type="radio"] {
+    vertical-align: text-bottom;
+}
+
+input[type="checkbox"] {
+    vertical-align: bottom;
+}
+
+.ie7 input[type="checkbox"] {
+    vertical-align: baseline;
+}
+
+.ie6 input {
+    vertical-align: text-bottom;
+}
+
+select,
+input,
+textarea {
+    font-size: 99%;
+}
+
+small {
+    font-size: 85%;
+}
+
+strong {
+    font-weight: bold;
+}
+
+//super and sub text
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+.clickable,
+label,
+input[type="button"],
+input[type="submit"],
+input[type="file"],
+button {
+    cursor: pointer;
+}
+
+//fix buttons for IE7
+button,
+input[type="button"] {
+    width: auto;
+    overflow: hidden;
+    border-color: transparent;
+    text-transform: capitalize;
+}
+
+//fix scalable imgs for IE7
+.ie7 img {
+    -ms-interpolation-mode: bicubic;
+}
+
+//fixing container collapse
+.clearfix::after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+$main-clr: cornflowerblue;
+$back-clr: #D2BC9E;
+$btn-clr: lightblue;
+$media-clr: #A9AAA5;
+$black: black;
+$white: #D8DADD;
+
+@font-face {
+    font-family: logo;
+    src: url(./fonts/TexgyreadventorRegular-1meB.otf);
+}
+
+div.App {
+    position: absolute;
+    border: 1rem outset $main-clr;
+    width: 100%;
+    height: 100vh;
+    background-color: $back-clr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    div.logo {
+        border: 1px solid $black;
+        background-color: $white;
+        text-align: center;
+        padding: 2px;
+        border-radius: 5px;
+        width: 11.43vw;
+        height: 19.44vh;
+        margin-top: 11vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        br {
+            line-height: 0px;
+        }
+        p {
+            font-size: 2vw;
+            font-weight: bold;
+            font-family: logo;
+        }
+    }
+    div.leftBtn, div.rightBtn {
+        width: 10vw;
+        height: 10vw;
+        text-align: center;
+        font-family: logo;
+        font-size: 1rem;
+        margin-bottom: 15vh;
+        
+        button {
+            background-color: $btn-clr;
+            border: 0.715vw solid $main-clr;
+            width: 11.42vw;
+            height: 11.42vw;
+            border-radius: 50%;
+        }
+    }
+    div.mediaBtns {
+        width: auto;
+        height: 10vw;
+        text-align: center;
+        margin-top: 4.17vh;
+        
+        button {
+            background-color: $media-clr;
+            border: 0.715vw solid $main-clr;
+            width: 5.714vw;
+            height: 6.17vh;
+            border-radius: 5vw;
+        }
+        p {
+            font-size: 0.75rem;
+        }
+    }
+    div.screen {
+        width: 51.43vw;
+        height: 94vh;
+        margin: 1.43vw;
+        border: 1.43vw outset color-mix(in srgb, $back-clr 90%, black);
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        font-family: logo;
+
+        div {
+            height: 85%;
+            width: 95%;
+            border: 0.1rem solid $main-clr;
+            border-radius: 1rem;
+            background-color: #C6CAAF;
+        }
+
+        .gameName {
+            font-size: 1.5rem;
+        }
+        .branding {
+            border: 2px solid $black;
+            border-radius: 1rem;
+            padding: 0 0.5rem;
+            font-weight: bold;
+        }
+    }
+}
