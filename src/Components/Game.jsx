@@ -25,6 +25,20 @@ const Game = ({ playerPos, mode }) => {
         setGameState(temp);
     }, [playerPos]);
 
+    useEffect(() => {
+        for(let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                let temp = gameState;
+                let tempSnake = snakesPos;
+                temp[0][snakesPos[0]] *= -1;
+                temp[0][snakesPos[0] - 1] *= -1;
+                tempSnake[0]--;
+                setGameState(temp);
+                setSnakesPos(tempSnake);
+            }, i * 1000);
+        }
+    }, []);
+
     // reset the player position when the mode is changed
     useEffect(() => {
         setPrevPos(1);
