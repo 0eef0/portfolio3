@@ -254,6 +254,7 @@ div.App div.mediaBtns button {
 }
 div.App div.mediaBtns p {
   font-size: 0.75rem;
+  font-family: logo;
 }
 div.App div.screen {
   width: 51.43vw;
@@ -267,7 +268,7 @@ div.App div.screen {
   flex-direction: column;
   font-family: logo;
 }
-div.App div.screen div {
+div.App div.screen div.contents {
   height: 85%;
   width: 95%;
   border: 0.1rem solid cornflowerblue;
@@ -282,4 +283,11 @@ div.App div.screen .branding {
   border-radius: 1rem;
   padding: 0 0.5rem;
   font-weight: bold;
+}
+div.App div.screen div.gameState {
+  display: flex;
+  flex-wrap: wrap;
+}
+div.App div.screen div.gameState img {
+  width: 20%;
 }/*# sourceMappingURL=main.css.map */

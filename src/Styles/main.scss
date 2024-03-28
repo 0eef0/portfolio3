@@ -279,6 +279,7 @@ div.App {
         }
         p {
             font-size: 0.75rem;
+            font-family: logo;
         }
     }
     div.screen {
@@ -293,7 +294,7 @@ div.App {
         flex-direction: column;
         font-family: logo;
 
-        div {
+        div.contents {
             height: 85%;
             width: 95%;
             border: 0.1rem solid $main-clr;
@@ -309,6 +310,14 @@ div.App {
             border-radius: 1rem;
             padding: 0 0.5rem;
             font-weight: bold;
+        }
+
+        div.gameState {
+            display: flex;
+            flex-wrap: wrap;
+            img {
+                width: 20%;
+            }
         }
     }
 }

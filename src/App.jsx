@@ -1,7 +1,30 @@
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUp, faCircleDown } from "@fortawesome/free-regular-svg-icons";
 
-function App() {
+// Component imports
+import Game from "./Components/Game";
+import Portfolio from "./Components/Portfolio";
+import Projects from "./Components/Projects";
+
+const App = () => {
+  // Variable denoting which mode the site is currently on
+  // 0 will be Baby Defender, 1 will be portfolio, 2 will be projects
+  const [ mode, setMode ] = useState(0);
+
+  const getContent = () => {
+    switch(mode) {
+      case 0:
+        return <Game/>;
+      case 1:
+        return <Portfolio/>
+      case 2:
+        return <Projects/>
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="App">
       <div className="logo">
@@ -17,20 +40,22 @@ function App() {
       </div>
       <div className="screen">
         <p className="gameName">BABY DEFENDER</p>
-        <div className="contents"></div>
+        <div className="contents">
+          { getContent() }
+        </div>
         <p className="branding">Roldan</p>
       </div>
       <div className="mediaBtns">
         <div className="gameBtn">
-          <button></button>
+          <button onClick={() => setMode(0)}></button>
           <p>GAME</p>
         </div>
         <div className="mainBtn">
-          <button></button>
+          <button onClick={() => setMode(1)}></button>
           <p>PORTFOLIO</p>
         </div>
         <div className="projBtn">
-          <button></button>
+          <button onClick={() => setMode(2)}></button>
           <p>PROJECTS</p>
         </div>
       </div>
