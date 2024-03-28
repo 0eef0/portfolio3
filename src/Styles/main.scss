@@ -214,6 +214,10 @@ $white: #D8DADD;
     font-family: logo;
     src: url(./fonts/TexgyreadventorRegular-1meB.otf);
 }
+@font-face {
+    font-family: digital;
+    src: url(./fonts/DS-DIGIT.TTF);
+}
 
 div.App {
     position: absolute;
@@ -315,8 +319,25 @@ div.App {
         div.gameState {
             display: flex;
             flex-wrap: wrap;
+            align-content: space-between;
+            height: 100%;
+            div.scoreboard {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 0.5rem;
+
+                h1 {
+                    font-size: 1.5rem;
+                    font-family: digital;
+                }
+            }
             img {
                 width: 20%;
+
+                &.spacer {
+                    opacity: 0;
+                }
             }
         }
     }
