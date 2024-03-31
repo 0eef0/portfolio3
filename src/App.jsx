@@ -10,6 +10,7 @@ import Projects from "./Components/Projects";
 const App = () => {
   // Variable denoting the player's position
   const [ playerPos, setPlayerPos ] = useState(1);
+  // function that changes the player position depending on up or down input
   const changePlayerPos = (direction) => {
     if(direction === 'down') {
       setPlayerPos((playerPos === 2) ? playerPos : playerPos + 1);
@@ -36,6 +37,7 @@ const App = () => {
     }
   };
 
+  // add key presses as options for control
   useEffect(() => {
     let fired = false;
     document.addEventListener("keydown", (e) => {

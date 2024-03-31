@@ -19,8 +19,8 @@ const Game = ({ playerPos, mode }) => {
     const [ snakesPos, setSnakesPos] = useState([4,4,4]);
     useEffect(() => {
         let temp = gameState;
-        temp[prevPos][1]--;
-        temp[playerPos][1]++;
+        temp[prevPos][1] /= 2;
+        temp[playerPos][1] *= 2;
         setPrevPos(playerPos);
         setGameState(temp);
     }, [playerPos]);
