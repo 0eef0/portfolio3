@@ -15,8 +15,70 @@ const Game = ({ playerPos, mode }) => {
         [3,2,1,1,-1],
         [3,1,1,1,-1]
     ]);
+    const [ score, setScore ] = useState(0);
+    const [ playing, setPlaying ] = useState(true);
     const [ prevPos, setPrevPos ] = useState(playerPos);
-    const [ snakesPos, setSnakesPos] = useState([4,4,4]);
+
+    let intervalId;
+    useEffect(() => {
+        if(gameState[0][1]  == -2) {
+            setScore(score + 1);
+        }
+    }, [gameState[1][1]]);
+    useEffect(() => {
+        if(gameState[0][0] < 0) {
+            setPlaying(false);
+        }
+    }, [gameState[1][0]]);
+
+    useEffect(() => {
+        if(gameState[1][1]  == -2) {
+            setScore(score + 1);
+            setDuration(duration - 100);
+            console.log(duration);
+        }
+    }, [gameState[1][1]]);
+    useEffect(() => {
+        if(gameState[1][0] < 0) {
+            setPlaying(false);
+        }
+    }, [gameState[1][0]]);
+
+    useEffect(() => {
+        if(gameState[2][1]  == -2) {
+            setScore(score + 1);
+        }
+    }, [gameState[1][1]]);
+    useEffect(() => {
+        if(gameState[2][0] < 0) {
+            setPlaying(false);
+        }
+    }, [gameState[1][0]]);
+
+    const [seconds, setSeconds] = useState(0);
+    const [duration, setDuration] = useState(1000);
+    useEffect(() => {
+        if(playing) {
+        intervalId = setInterval(() => {
+        setSeconds(prevSeconds => prevSeconds + 1);
+        let temp = gameState;
+        let snake = temp[1].indexOf(-1);
+        if(snake < 0) {
+            for(let i = 0; i < temp[1].length; i++) {
+                temp[1][i] = Math.abs(temp[1][i]);
+            }
+            temp[1][4] *= -1;
+            snake = 4;
+        } else {
+            temp[1][snake - 1] *= -1;
+            temp[1][snake] *= -1;
+        }
+        setGameState(temp);
+      }, duration);
+    }
+      return () => clearInterval(intervalId);
+    }, [playing]);
+    
     useEffect(() => {
         let temp = gameState;
         temp[prevPos][1] /= 2;
@@ -24,20 +86,6 @@ const Game = ({ playerPos, mode }) => {
         setPrevPos(playerPos);
         setGameState(temp);
     }, [playerPos]);
-
-    useEffect(() => {
-        for(let i = 0; i < 3; i++) {
-            setTimeout(() => {
-                let temp = gameState;
-                let tempSnake = snakesPos;
-                temp[0][snakesPos[0]] *= -1;
-                temp[0][snakesPos[0] - 1] *= -1;
-                tempSnake[0]--;
-                setGameState(temp);
-                setSnakesPos(tempSnake);
-            }, i * 1000);
-        }
-    }, []);
 
     // reset the player position when the mode is changed
     useEffect(() => {
@@ -48,7 +96,7 @@ const Game = ({ playerPos, mode }) => {
     <div className='gameState'>
         <div className="scoreboard">
             <h1>TOP: 0000</h1>
-            <h1>SCORE: 0000</h1>
+            <h1>SCORE: { String(score).padStart(4, '0') }</h1>
         </div>
         {
             gameState.map((row, i) => {
